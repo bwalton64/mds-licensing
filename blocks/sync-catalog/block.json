@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mds-lic/sync-catalog",
+	"version": "0.1.0",
+	"title": "Sync Licensing Catalog & Quote Request",
+	"category": "mds-release-manager",
+	"icon": "tickets-alt",
+	"description": "Filterable One-Stop / Mood / Stems sync licensing catalog with built-in Sync Quote Request dialog.",
+	"keywords": [ "sync", "licensing", "catalog", "quote", "mds" ],
+	"textdomain": "mds-licensing",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"limit": {
+			"type": "number",
+			"default": 24
+		},
+		"oneStopOnly": {
+			"type": "boolean",
+			"default": false
+		},
+		"showQuote": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

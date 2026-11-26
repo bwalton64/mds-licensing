@@ -1,0 +1,141 @@
+/**
+ * Theme-adaptive frontend styles for `mds-lic/sync-catalog` & `[sync-catalog]`.
+ */
+.mds-lic-catalog {
+	--mds-lic-bg: var(--mds-theme-surface, #ffffff);
+	--mds-lic-border: var(--mds-theme-border, rgba(128, 128, 128, 0.25));
+	--mds-lic-text: var(--mds-theme-text, inherit);
+	--mds-lic-muted: var(--mds-theme-muted, #646970);
+	--mds-lic-accent: var(--mds-theme-accent, #2271b1);
+	color: var(--mds-lic-text);
+}
+
+.mds-lic-catalog__filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.mds-lic-catalog__search {
+	flex: 1 1 260px;
+	min-height: 44px;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--mds-lic-border);
+	border-radius: 6px;
+	background: var(--mds-lic-bg);
+	color: var(--mds-lic-text);
+}
+
+.mds-lic-catalog__check {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-height: 44px;
+	cursor: pointer;
+}
+
+.mds-lic-catalog__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 1rem;
+}
+
+.mds-lic-catalog__card {
+	background: var(--mds-lic-bg);
+	border: 1px solid var(--mds-lic-border);
+	border-radius: 8px;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.mds-lic-catalog__card-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.mds-lic-catalog__title {
+	margin: 0;
+	font-size: 1.05rem;
+}
+
+.mds-lic-catalog__badge {
+	font-size: 0.72rem;
+	font-weight: 700;
+	padding: 0.15rem 0.5rem;
+	border-radius: 4px;
+	background: var(--mds-lic-accent);
+	color: #ffffff;
+	white-space: nowrap;
+}
+
+.mds-lic-catalog__meta,
+.mds-lic-catalog__tags {
+	margin: 0;
+	font-size: 0.88rem;
+	color: var(--mds-lic-muted);
+}
+
+.mds-lic-catalog__quote-btn {
+	margin-top: auto;
+	min-height: 44px;
+	padding: 0.5rem 0.9rem;
+	border: none;
+	border-radius: 6px;
+	background: var(--mds-lic-accent);
+	color: #ffffff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.mds-lic-dialog {
+	max-width: 520px;
+	width: 92vw;
+	border: 1px solid var(--mds-lic-border);
+	border-radius: 8px;
+	padding: 1.25rem;
+}
+
+.mds-lic-quote-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+}
+
+.mds-lic-quote-form label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.mds-lic-quote-form input,
+.mds-lic-quote-form select,
+.mds-lic-quote-form textarea {
+	min-height: 40px;
+	padding: 0.45rem 0.6rem;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+}
+
+.mds-lic-dialog__actions {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: flex-end;
+	margin-top: 0.5rem;
+}
+
+.mds-lic-dialog__close {
+	min-height: 44px;
+	padding: 0.5rem 0.9rem;
+	border: 1px solid #8c8f94;
+	border-radius: 6px;
+	background: transparent;
+	cursor: pointer;
+}
