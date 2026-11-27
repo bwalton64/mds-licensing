@@ -1,5 +1,15 @@
 # Changelog
 
+## [Unreleased]
+
+## [1.0.0] - 2026-11-27
+
+### Changed
+- Initial `1.0.0` release: Sync licensing & music supervisor pitch hub (DISCO.ac CSV, Broadcast Cue Sheets), mechanical cover licensing (2026 US CRB calculator + Easy Song API), sample clearance ledger, printable Split Sheet Agreements, YouTube/Meta Content ID allowlists, and `mds-lic/sync-catalog` block.
+- Hardened `POST /mds-lic/v1/sync-quote` with per-IP transient rate limiting (HTTP `429`) and published `release` validation, added `wpml-config.xml`, and switched autoloader bootstrap to `file_exists()` for Windows LocalWP resilience.
+
+# Changelog
+
 All notable changes to MDS Licensing are documented in this file.
 
 ## [0.1.0] - 2026-11-26

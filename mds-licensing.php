@@ -3,7 +3,7 @@
  * Plugin Name: MDS Licensing
  * Plugin URI: https://mustydungeon.com
  * Description: Sync licensing, music supervisor pitch hub (DISCO.ac CSV, Cue Sheets), mechanical cover licensing (2026 CRB calculator + Easy Song API), sample clearance ledger, printable Split Sheets, and YouTube/Meta Content ID allowlists for MDS Release Manager.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Requires at least: 7.0
  * Requires PHP: 8.0
  * Requires Plugins: mds-release-manager
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'MDS_LIC_VERSION' ) ) {
-	define( 'MDS_LIC_VERSION', '0.1.0' );
+	define( 'MDS_LIC_VERSION', '1.0.0' );
 }
 if ( ! defined( 'MDS_LIC_FILE' ) ) {
 	define( 'MDS_LIC_FILE', __FILE__ );
@@ -43,7 +43,7 @@ if ( ! defined( 'MDS_LIC_BASENAME' ) ) {
 }
 
 $mds_lic_autoload = MDS_LIC_PATH . 'vendor/autoload.php';
-if ( is_readable( $mds_lic_autoload ) ) {
+if ( file_exists( $mds_lic_autoload ) ) {
 	require_once $mds_lic_autoload;
 }
 

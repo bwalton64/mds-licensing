@@ -161,15 +161,33 @@ final class RestApi {
 			return rest_ensure_response( array( 'ok' => true ) );
 		}
 
-		$release_id = (int) ( $body['release_id'] ?? 0 );
-		$name       = sanitize_text_field( (string) ( $body['requester_name'] ?? '' ) );
-		$email      = sanitize_email( (string) ( $body['requester_email'] ?? '' ) );
-		$company    = sanitize_text_field( (string) ( $body['company'] ?? '' ) );
-		$media_type = sanitize_text_field( (string) ( $body['media_type'] ?? 'Film / TV' ) );
-		$territory  = sanitize_text_field( (string) ( $body['territory'] ?? 'Worldwide' ) );
-		$term       = sanitize_text_field( (string) ( $body['term'] ?? 'Perpetuity' ) );
-		$budget     = sanitize_text_field( (string) ( $body['budget'] ?? '' ) );
-		$notes      = sanitize_textarea_field( (string) ( $body['notes'] ?? '' ) );
+		// Per-IP transient rate limiting (max 5 quote requests per 10 minutes) to prevent wp_mail() & option-table abuse.
+		if ( function_exists( 'get_transient' ) && function_exists( 'set_transient' ) ) {
+			$remote_ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+			$rate_key  = 'mds_lic_sq_rl_' . md5( $remote_ip );
+			$attempts  = (int) get_transient( $rate_key );
+			if ( $attempts >= 5 ) {
+				return new \WP_Error(
+					'mds_lic_quote_rate_limited',
+					__( 'Too many quote requests. Please wait a few minutes and try again.', 'mds-licensing' ),
+					array( 'status' => 429 )
+				);
+			}
+			set_transient( $rate_key, $attempts + 1, 10 * MINUTE_IN_SECONDS );
+		}
+
+		$raw_release_id = (int) ( $body['release_id'] ?? 0 );
+		$release_id     = ( $raw_release_id > 0 && 'release' === get_post_type( $raw_release_id ) && 'publish' === get_post_status( $raw_release_id ) )
+			? $raw_release_id
+			: 0;
+		$name           = sanitize_text_field( (string) ( $body['requester_name'] ?? '' ) );
+		$email          = sanitize_email( (string) ( $body['requester_email'] ?? '' ) );
+		$company        = sanitize_text_field( (string) ( $body['company'] ?? '' ) );
+		$media_type     = sanitize_text_field( (string) ( $body['media_type'] ?? 'Film / TV' ) );
+		$territory      = sanitize_text_field( (string) ( $body['territory'] ?? 'Worldwide' ) );
+		$term           = sanitize_text_field( (string) ( $body['term'] ?? 'Perpetuity' ) );
+		$budget         = sanitize_text_field( (string) ( $body['budget'] ?? '' ) );
+		$notes          = sanitize_textarea_field( (string) ( $body['notes'] ?? '' ) );
 
 		if ( '' === $name || '' === $email ) {
 			return new \WP_Error( 'mds_lic_quote_invalid', __( 'Please provide your name and email address.', 'mds-licensing' ), array( 'status' => 400 ) );

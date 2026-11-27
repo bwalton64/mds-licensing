@@ -2,7 +2,7 @@
   "name": "mds/mds-licensing",
   "description": "Sync licensing, music supervisor pitch hub, cover mechanical licensing, sample clearance, printable Split Sheets, and Content ID allowlists for MDS Release Manager.",
   "type": "wordpress-plugin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "GPL-3.0-or-later",
   "require": {
     "php": ">=8.0"
